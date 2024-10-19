@@ -30,8 +30,11 @@
 
   <body class="max-h-full">
         <div class="flex">
-            <%= render 'layouts/sidebar' %>
-            <div>
+            <% if user_signed_in? %>
+                <%= render 'layouts/sidebar' %>
+            <% end %>
+            <div class="container p-8">
+                <%= render "layouts/alert" %>
                 <%= yield %>
             </div>
         </div>
