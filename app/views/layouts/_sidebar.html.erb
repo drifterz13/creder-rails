@@ -1,0 +1,37 @@
+<div
+    class="relative flex flex-col rounded-xl bg-white text-gray-700
+    shadow-md h-[100vh] w-full max-w-[20rem] p-6"
+>
+    <div class="mb-2 flex items-center gap-4 p-4">
+        <img
+            src="https://www.material-tailwind.com/logos/mt-logo.png"
+            alt="brand"
+            class="h-9 w-9"
+        />
+        <p
+            class="block antialiased font-sans leading-relaxed
+            text-blue-gray-900 text-lg font-bold"
+        >
+            Creder Rails
+        </p>
+    </div>
+    <hr class="my-2 border-gray-200" />
+    <nav
+        class="flex flex-col gap-1 min-w-[240px] p-2
+        font-sans text-base font-normal text-gray-700"
+    >
+        <%= render "shared/ui/sidebar-menu", title: "Dashboard" do %>
+            <%= render "shared/icons/dashboard-icon" %>
+        <% end %>
+        <%= render "shared/ui/sidebar-menu", title: "Products" do %>
+            <%= render "shared/icons/product-icon" %>
+        <% end %>
+    </nav>
+    <hr class="my-2 border-gray-200" />
+    <nav
+        class="flex flex-col gap-1 mt-auto min-w-[240px] p-2
+        font-sans text-base font-normal text-gray-700"
+    >
+        <%= render "shared/ui/profile-menu" %>
+    </nav>
+</div>
