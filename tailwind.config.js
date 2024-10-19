@@ -1,14 +1,12 @@
-const withMT = require("@material-tailwind/html/utils/withMT");
-
-module.exports = withMT({
+module.exports = {
   content: [
-    './app/views/**/*.html.erb',
-    './app/helpers/**/*.rb',
-    './app/assets/stylesheets/**/*.css',
-    './app/javascript/**/*.js'
+    "./app/views/**/*.html.erb",
+    "./app/helpers/**/*.rb",
+    "./app/assets/stylesheets/**/*.css",
+    "./app/javascript/**/*.js",
   ],
   theme: {
-    extend: []
+    extend: [],
   },
-  plugins: []
-})
+  plugins: [require("daisyui")],
+};

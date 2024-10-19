@@ -16,16 +16,11 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <script async defer src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
   </head>
 
   <body class="max-h-full">
@@ -33,9 +28,14 @@
             <% if user_signed_in? %>
                 <%= render 'layouts/sidebar' %>
             <% end %>
-            <div class="container p-8">
-                <%= render "layouts/alert" %>
-                <%= yield %>
+            <div class="w-full">
+                <% if user_signed_in? %>
+                    <%= render 'layouts/navbar' %>
+                <% end %>
+                <div class="container p-8">
+                    <%= render "layouts/alert" %>
+                    <%= yield %>
+                </div>
             </div>
         </div>
   </body>

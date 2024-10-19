@@ -1,6 +1,6 @@
 <div
     class="relative flex flex-col rounded-xl bg-white text-gray-700
-    shadow-md h-[100vh] w-full max-w-[20rem] p-6"
+    shadow-md h-[100vh] py-4 px-2.5"
 >
     <div class="mb-2 flex items-center gap-4 p-4">
         <img
@@ -15,23 +15,24 @@
             Creder Rails
         </p>
     </div>
-    <hr class="my-2 border-gray-200" />
-    <nav
-        class="flex flex-col gap-1 min-w-[240px] p-2
-        font-sans text-base font-normal text-gray-700"
-    >
-        <%= render "shared/ui/sidebar-menu", title: "Dashboard" do %>
-            <%= render "shared/icons/dashboard-icon" %>
-        <% end %>
-        <%= render "shared/ui/sidebar-menu", title: "Products" do %>
-            <%= render "shared/icons/product-icon" %>
-        <% end %>
-    </nav>
-    <hr class="my-2 border-gray-200" />
-    <nav
-        class="flex flex-col gap-1 mt-auto min-w-[240px] p-2
-        font-sans text-base font-normal text-gray-700"
-    >
-        <%= render "shared/ui/profile-menu" %>
-    </nav>
+    <ul class="menu menu-lg bg-base-100 rounded-box w-64">
+        <li>
+            <a href="#">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Users</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Groups</span>
+            </a>
+        </li>
+    </ul>
 </div>
