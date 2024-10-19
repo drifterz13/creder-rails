@@ -17,22 +17,16 @@
     </div>
     <ul class="menu menu-lg bg-base-100 rounded-box w-64">
         <li>
-            <a href="#">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            <%= link_to dashboard_path do %>
+                <%= lucide_icon 'layout-dashboard', class: "w-5 h-5" %>
                 <span>Dashboard</span>
-            </a>
+            <% end %>
         </li>
         <li>
-            <a href="#">
-                <i data-lucide="users" class="w-5 h-5"></i>
+            <%= link_to admin_users_path do %>
+                <%= lucide_icon 'users', class: "w-5 h-5" %>
                 <span>Users</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i data-lucide="users" class="w-5 h-5"></i>
-                <span>Groups</span>
-            </a>
+            <% end %>
         </li>
     </ul>
 </div>
