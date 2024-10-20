@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)
+
 import DrawerController from "./drawer_controller"
 application.register("drawer", DrawerController)
 

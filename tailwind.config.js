@@ -6,7 +6,17 @@ module.exports = {
     "./app/javascript/**/*.js",
   ],
   theme: {
-    extend: [],
+    extend: {
+      keyframes: {
+        "appear-then-fade": {
+          "0%, 100%": { opacity: "0" },
+          "5%, 60%": { opacity: "1" },
+        },
+      },
+      animation: {
+        "appear-then-fade": "appear-then-fade 4s ease-in-out",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };
