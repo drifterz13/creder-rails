@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
 
   delegate :first_name, :last_name, to: :profile, allow_nil: true
 
