@@ -1,0 +1,51 @@
+<section class="grid text-center h-screen items-center">
+    <div>
+        <h3
+          class="block antialiased tracking-normal font-sans text-3xl font-semibold leading-snug text-blue-gray-900 mb-10"
+        >
+            <%= t "devise.invitations.edit.header" %>
+        </h3>
+        <%= form_for(resource, as: resource_name,
+            url: invitation_path(resource_name),
+            html: { method: :put, class: "mx-auto max-w-[24rem] text-left" }) do |f| %>
+          <%= f.hidden_field :invitation_token, readonly: true %>
+
+          <% if f.object.class.require_password_on_accepting %>
+              <div class="mb-6">
+                  <%= f.label :password do %>
+                      <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                          Password
+                      </p>
+                  <% end %>
+                <div class="relative w-full min-w-[200px] h-11">
+                  <%= f.password_field :password,
+                      class: "input input-bordered w-full #{'input-error' if resource.errors[:password].any?}"
+                  %>
+                </div>
+                <% if resource.errors[:password].any? %>
+                  <p class="text-error text-xs mt-2"><%= resource.errors[:password].join(", ") %></p>
+                <% end %>
+              </div>
+              <div class="mb-6">
+                <%= f.label :password_confirmation do %>
+                    <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                       Confirm Password
+                    </p>
+                <% end %>
+                <div class="relative w-full min-w-[200px] h-11">
+                  <%= f.password_field :password_confirmation,
+                      class: "input input-bordered w-full #{'input-error' if resource.errors[:password_confirmation].any?}"
+                  %>
+                </div>
+                <% if resource.errors[:password_confirmation].any? %>
+                  <p class="text-error text-xs mt-2"><%= resource.errors[:password_confirmation].join(", ") %></p>
+                <% end %>
+              </div>
+          <% end %>
+
+          <div>
+            <%= f.submit t("devise.invitations.edit.submit_button"), class: 'btn btn-neutral' %>
+          </div>
+        <% end %>
+    </div>
+</section>

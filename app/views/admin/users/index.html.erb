@@ -3,7 +3,7 @@
     <div class="drawer-content">
         <div class="flex justify-between items-baseline">
             <h1 class="text-2xl">Users management</h1>
-            <%= link_to "Add new user", new_admin_invite_user_path,
+            <%= link_to "Add new user", new_user_invitation_path,
                 class: "btn btn-primary drawer-button",
                 data: { turbo_frame: "invite_user_form", action: "click->drawer#open" }
             %>

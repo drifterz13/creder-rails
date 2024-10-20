@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :invitations, only: [:new, :create], as: :invite_users
+    # resources :invitations, only: [:new, :create], as: :invite_users
     resources :users, only: [:index]
   end
 
-  devise_for :users
+  devise_for :users, controllers: { invitations: "users/invitations" }
 
   get "dashboards/index", as: :dashboard
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["checkbox"];
 
   connect() {
-    console.log("Drawer controller connected");
+    this.close();
   }
 
   open = () => {
