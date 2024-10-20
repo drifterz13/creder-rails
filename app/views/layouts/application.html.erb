@@ -29,9 +29,6 @@
                 <%= render 'layouts/sidebar' %>
             <% end %>
             <div class="w-full">
-                <% if user_signed_in? %>
-                    <%= render 'layouts/navbar' %>
-                <% end %>
                 <div class="container p-8">
                     <%= render "layouts/alert" %>
                     <%= yield %>
