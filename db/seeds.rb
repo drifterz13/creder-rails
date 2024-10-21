@@ -7,3 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'faker'
+
+(1..50).each do |i|
+  User.create!(
+    email: Faker::Internet.email,
+    password: "P@ssw0rd",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    confirmed_at: Time.now
+  )
+end

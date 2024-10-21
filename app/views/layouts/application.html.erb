@@ -28,7 +28,7 @@
             <% if user_signed_in? %>
                 <%= render 'layouts/sidebar' %>
             <% end %>
-            <div class="w-full">
+            <div class="w-full overflow-y-scroll max-h-screen">
                 <div class="container p-8">
                     <%= render "layouts/alert" %>
                     <%= yield %>
