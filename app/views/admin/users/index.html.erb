@@ -10,6 +10,9 @@
 
         <div class="mt-8 overflow-x-auto">
           <%= render 'table', users: @users %>
+          <div class='mt-4 flex justify-end'>
+              <%== pagy_nav(@pagy) %>
+          </div>
         </div>
     </div>
     <div class="drawer-side">
