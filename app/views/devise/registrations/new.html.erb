@@ -15,57 +15,89 @@
         url: registration_path(resource_name),
         html: { class: "mx-auto max-w-[24rem] text-left" }
     ) do |f| %>
-      <div class="mb-6">
-          <%= f.label :email do %>
-              <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
-                  Your Email
-              </p>
+        <div class="mb-6">
+            <%= f.label :first_name do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                   First name
+                </p>
+            <% end %>
+          <div class="relative w-full min-w-[200px] h-11">
+              <%= f.text_field :first_name,
+                placeholder: "John",
+                class: "input input-bordered w-full #{'input-error' if resource.errors[:first_name].any?}"
+              %>
+          </div>
+          <% if resource.errors[:first_name].any? %>
+            <p class="text-error text-xs mt-2"><%= resource.errors[:first_name].join(", ") %></p>
           <% end %>
-        <div class="relative w-full min-w-[200px] h-11">
-            <%= f.email_field :email,
-              placeholder: "name@mail.com",
-              class: "input input-bordered w-full #{'input-error' if resource.errors[:email].any?}"
+        </div>
+        <div class="mb-6">
+            <%= f.label :last_name do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                   Last name
+                </p>
+            <% end %>
+          <div class="relative w-full min-w-[200px] h-11">
+              <%= f.text_field :last_name,
+                placeholder: "Doe",
+                class: "input input-bordered w-full #{'input-error' if resource.errors[:last_name].any?}"
+              %>
+          </div>
+          <% if resource.errors[:last_name].any? %>
+            <p class="text-error text-xs mt-2"><%= resource.errors[:last_name].join(", ") %></p>
+          <% end %>
+        </div>
+        <div class="mb-6">
+            <%= f.label :email do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                    Your Email
+                </p>
+            <% end %>
+            <div class="relative w-full min-w-[200px] h-11">
+                <%= f.email_field :email,
+                placeholder: "name@mail.com",
+                class: "input input-bordered w-full #{'input-error' if resource.errors[:email].any?}"
+                %>
+            </div>
+            <% if resource.errors[:email].any? %>
+            <p class="text-error text-xs mt-2"><%= resource.errors[:email].join(", ") %></p>
+            <% end %>
+        </div>
+        <div class="mb-6">
+            <%= f.label :password do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                    Password
+                </p>
+            <% end %>
+            <div class="relative w-full min-w-[200px] h-11">
+            <%= f.password_field :password,
+                class: "input input-bordered w-full #{'input-error' if resource.errors[:password].any?}"
             %>
+            </div>
+            <% if resource.errors[:password].any? %>
+            <p class="text-error text-xs mt-2"><%= resource.errors[:password].join(", ") %></p>
+            <% end %>
         </div>
-        <% if resource.errors[:email].any? %>
-          <p class="text-error text-xs mt-2"><%= resource.errors[:email].join(", ") %></p>
-        <% end %>
-      </div>
-      <div class="mb-6">
-          <%= f.label :password do %>
-              <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
-                  Password
-              </p>
-          <% end %>
-        <div class="relative w-full min-w-[200px] h-11">
-          <%= f.password_field :password,
-              class: "input input-bordered w-full #{'input-error' if resource.errors[:password].any?}"
-          %>
+        <div class="mb-6">
+            <%= f.label :password_confirmation do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                Confirm Password
+                </p>
+            <% end %>
+            <div class="relative w-full min-w-[200px] h-11">
+            <%= f.password_field :password_confirmation,
+                class: "input input-bordered w-full #{'input-error' if resource.errors[:password_confirmation].any?}"
+            %>
+            </div>
+            <% if resource.errors[:password_confirmation].any? %>
+            <p class="text-error text-xs mt-2"><%= resource.errors[:password_confirmation].join(", ") %></p>
+            <% end %>
         </div>
-        <% if resource.errors[:password].any? %>
-          <p class="text-error text-xs mt-2"><%= resource.errors[:password].join(", ") %></p>
-        <% end %>
-      </div>
-      <div class="mb-6">
-        <%= f.label :password_confirmation do %>
-            <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
-               Confirm Password
-            </p>
-        <% end %>
-        <div class="relative w-full min-w-[200px] h-11">
-          <%= f.password_field :password_confirmation,
-              class: "input input-bordered w-full #{'input-error' if resource.errors[:password_confirmation].any?}"
-          %>
-        </div>
-        <% if resource.errors[:password_confirmation].any? %>
-          <p class="text-error text-xs mt-2"><%= resource.errors[:password_confirmation].join(", ") %></p>
-        <% end %>
-      </div>
-      <%= f.submit "Signup", class: "btn btn-neutral" %>
-      <p class="block antialiased font-sans text-sm leading-normal text-gray-700 !mt-4 text-center font-normal">
-          Already have an account?
-          <%= link_to "Sign in", new_user_session_path, class: "link" %>
-      </p>
+        <%= f.submit "Signup", class: "btn btn-neutral" %>
+        <p class="block antialiased font-sans text-sm leading-normal text-gray-700 !mt-4 text-center font-normal">
+            Already have an account?
+            <%= link_to "Sign in", new_user_session_path, class: "link" %>
+        </p>
     <% end %>
   </div>
 </section>

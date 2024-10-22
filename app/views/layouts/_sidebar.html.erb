@@ -26,32 +26,22 @@
             </ul>
         </div>
     </div>
-    <div class='dropdown dropdown-top mt-auto'>
-        <div tabindex='0' role='button' class="flex mx-4 bg-blue-300 bg-opacity-10 border border-blue-100 rounded-md p-1 sm:p-2">
-            <div class="avatar placeholder">
-              <div class="bg-neutral text-neutral-content w-10 h-10 rounded-full">
-                <span><%= current_user.full_name.first.upcase %></span>
-              </div>
+    <div class="flex mx-4 mt-auto bg-blue-300 bg-opacity-10 border border-blue-100 rounded-md p-1 sm:p-2">
+        <div class="avatar placeholder">
+            <div class="bg-neutral text-neutral-content w-10 h-10 rounded-full">
+            <span><%= current_user.full_name.first.upcase %></span>
             </div>
-            <div class="flex-1 ml-3 items-center text-gray-700 hidden sm:block">
-                <div class="text-md"><%= current_user.full_name %></div>
-                <div class="text-xs">Administrator</div>
-            </div>
-            <%= lucide_icon 'settings', class: 'w-5 h-5' %>
         </div>
-        <ul tabindex="0" class="dropdown-content menu bg-base-200/30 rounded-box z-[1] w-[224px] my-2 mx-4 box-border shadow">
-            <li>
-                <%= link_to edit_user_registration_path do %>
-                    <%= lucide_icon 'user', class: "w-5 h-5" %>
-                    <span>Profile</span>
-                <% end %>
-            </li>
-            <li>
+        <div class="flex-1 ml-3 items-center text-gray-700 hidden sm:block">
+            <div class="text-md"><%= current_user.full_name %></div>
+            <div class="text-xs">Administrator</div>
+        </div>
+        <div class='self-center'>
+            <div tabindex='0' role='button' class='btn btn-ghost btn-sm'>
                 <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
-                    <%= lucide_icon 'log-out', class: "w-5 h-5" %>
-                    <span>Logout</span>
+                    <%= lucide_icon 'log-out', class: 'w-5 h-5' %>
                 <% end %>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </section>
