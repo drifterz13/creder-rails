@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   namespace :admin do
-    # resources :invitations, only: [:new, :create], as: :invite_users
     resources :users, only: [:index]
   end
 

@@ -1,7 +1,24 @@
 <div data-controller='drawer' class="drawer drawer-end">
     <input id="invite-user-drawer" type="checkbox" class="drawer-toggle" data-drawer-target='checkbox' />
     <div class="drawer-content">
-        <div class="flex justify-end items-baseline">
+        <div class="flex justify-between items-baseline">
+            <div class='w-80'>
+                <%= form_with url: admin_users_path,
+                    method: :get,
+                    data: {
+                        turbo_frame: 'user_search_results',
+                        turbo_action: 'advance',
+                        controller: 'search-form',
+                        action: 'input->search-form#submit'
+                    } do |f|
+                %>
+                    <%= f.search_field :search,
+                        class: 'input input-bordered w-full',
+                        placeholder: 'Name, Email',
+                        value: params[:search]
+                    %>
+                <% end %>
+            </div>
             <%= link_to "Add new user", new_user_invitation_path,
                 class: "btn btn-primary drawer-button",
                 data: { turbo_frame: "invite_user_form", action: "click->drawer#open" }
@@ -9,10 +26,12 @@
         </div>
 
         <div class="mt-8 overflow-x-auto">
-          <%= render 'table', users: @users %>
-          <div class='mt-4 flex justify-end'>
-              <%== pagy_nav(@pagy) %>
-          </div>
+        <%= turbo_frame_tag 'user_search_results' do %>
+            <%= render 'table', users: @users %>
+            <div class='mt-4 flex justify-end'>
+                <%== pagy_nav(@pagy) %>
+            </div>
+          <% end %>
         </div>
     </div>
     <div class="drawer-side">

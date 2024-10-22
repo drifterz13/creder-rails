@@ -4,11 +4,17 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  default_scope { order(first_name: :asc) }
+
+  def self.search(val)
+    where(
+      "first_name LIKE ? OR last_name LIKE ? OR email LIKE ?",
+      "%#{val}%", "%#{val}%", "%#{val}%"
+    )
+  end
+
   def full_name
-    if first_name and last_name
-      "#{first_name} #{last_name}"
-    else
-      "Anonymous"
-    end
+    "Anonymous" unless first_name
+    "#{first_name} #{last_name}"
   end
 end
