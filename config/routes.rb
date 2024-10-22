@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [ :index ]
   end
 
   devise_for :users, controllers: { invitations: "users/invitations" }
