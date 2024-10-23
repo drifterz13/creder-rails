@@ -28,8 +28,8 @@ staff_role = Role.find_by(name: "Staff")
 
 permissions = Permission.all
 super_admin_permissions = permissions
-admin_permissions = permissions.select { |permission| [:view_user, :create_user, :edit_user, :view_role, :create_role, :edit_role].include?(permission.permit.to_sym) }
-staff_permissions = permissions.select { |permission| [:view_role].include?(permission.permit.to_sym) }
+admin_permissions = permissions.select { |permission| [ :view_user, :create_user, :edit_user, :view_role, :create_role, :edit_role ].include?(permission.permit.to_sym) }
+staff_permissions = permissions.select { |permission| [ :view_role ].include?(permission.permit.to_sym) }
 
 RolePermission.create!(super_admin_permissions.map { |permission| { role: super_admin_role, permission: permission } })
 RolePermission.create!(admin_permissions.map { |permission| { role: admin_role, permission: permission } })
