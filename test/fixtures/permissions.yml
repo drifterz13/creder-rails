@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+view_user:
+  permit: view_user
+  name: "View user"
+  description: "Can view user"
+
+create_user:
+  permit: create_user
+  name: CREATE_USER
+  description: "Can create user"

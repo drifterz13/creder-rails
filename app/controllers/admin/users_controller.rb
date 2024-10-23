@@ -3,9 +3,9 @@ class Admin::UsersController < ApplicationController
 
   def index
     if params[:search].present?
-      @pagy, @users = pagy(User.search(params[:search]))
+      @pagy, @users = pagy(policy_scope(User).includes(:role).search(params[:search]))
     else
-      @pagy, @users = pagy(User.all)
+      @pagy, @users = pagy(policy_scope(User).includes(:role))
     end
   end
 end

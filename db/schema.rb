@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_20_132503) do
+ActiveRecord::Schema[8.1].define(version: 2024_10_23_121518) do
+  create_table "permissions", force: :cascade do |t|
+    t.integer "permit"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "role_permissions", force: :cascade do |t|
+    t.integer "role_id", null: false
+    t.integer "permission_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,11 +55,17 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_20_132503) do
     t.integer "invitations_count", default: 0
     t.string "first_name"
     t.string "last_name"
+    t.integer "role_id", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
+
+  add_foreign_key "role_permissions", "permissions"
+  add_foreign_key "role_permissions", "roles"
+  add_foreign_key "users", "roles"
 end

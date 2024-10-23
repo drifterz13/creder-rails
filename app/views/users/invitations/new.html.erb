@@ -40,6 +40,19 @@
                 <p class="text-error text-xs mt-2"><%= @user.errors[:last_name].join(", ") %></p>
             <% end %>
         </div>
+        <div class="mb-6">
+            <%= f.label :role_id do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                    Role
+                </p>
+            <% end %>
+            <div class="relative w-full min-w-[200px] h-11">
+                <%= f.collection_select :role_id, Role.all, :id, :name, { include_blank: "Select role" }, class: "select select-bordered w-full" %>
+            </div>
+            <% if @user.errors[:email].any? %>
+                <p class="text-error text-xs mt-2"><%= @user.errors[:email].join(", ") %></p>
+            <% end %>
+        </div>
 
       <div>
         <%= f.submit t("devise.invitations.new.submit_button"), class: 'btn btn-neutral w-full' %>
