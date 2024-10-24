@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [ :index ]
+    resources :roles, only: [ :index, :new, :create ]
   end
 
   devise_for :users, controllers: {

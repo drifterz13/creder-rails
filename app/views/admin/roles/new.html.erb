@@ -1,0 +1,48 @@
+<%= turbo_frame_tag "create_role_form" do %>
+    <%= form_with(model: @role, url: admin_roles_path, method: :post, data: { action: 'drawer#close' }) do |f| %>
+        <div class="mb-10">
+            <h1 class="text-2xl antialiased font-semibold mt-4">Create new role</h1>
+        </div>
+        <div class="mb-6">
+            <%= f.label :name do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                    Role name
+                </p>
+            <% end %>
+            <div class="relative w-full min-w-[200px] h-11">
+                <%= f.text_field :name, class: "input input-bordered w-full #{'input-error' if @role.errors[:name].any?}", placeholder: "Special Member" %>
+            </div>
+            <% if @role.errors[:name].any? %>
+                <p class="text-error text-xs mt-2"><%= @role.errors[:name].join(", ") %></p>
+            <% end %>
+        </div>
+        <div class="mb-6">
+            <%= f.label :description do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                    Description
+                </p>
+            <% end %>
+            <div class="relative w-full min-w-[200px] h-11">
+                <%= f.text_field :description, class: "input input-bordered w-full #{'input-error' if @role.errors[:description].any?}", placeholder: "My special member role description" %>
+            </div>
+            <% if @role.errors[:description].any? %>
+                <p class="text-error text-xs mt-2"><%= @role.errors[:description].join(", ") %></p>
+            <% end %>
+        </div>
+        <div class="mb-6 max-w-32">
+            <%= f.label :permissions do %>
+                <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
+                    Permissions
+                </p>
+            <% end %>
+            <div class="permissions">
+                <%= f.fields_for :role_permissions do |role_permission_fields| %>
+                    <%= render "role_permission_fields", f: role_permission_fields %>
+                <% end %>
+            </div>
+        </div>
+        <div>
+            <%= f.submit "Create role", class: 'btn btn-neutral w-full' %>
+        </div>
+    <% end %>
+<% end %>

@@ -18,6 +18,12 @@
                     <% end %>
                 </li>
                 <li>
+                    <%= link_to admin_roles_path do %>
+                        <%= lucide_icon 'book-user', class: "w-5 h-5" %>
+                        <span>Roles</span>
+                    <% end %>
+                </li>
+                <li>
                     <%= link_to admin_users_path do %>
                         <%= lucide_icon 'users', class: "w-5 h-5" %>
                         <span>Users</span>

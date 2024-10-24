@@ -1,0 +1,44 @@
+<div data-controller='drawer' class="drawer drawer-end">
+    <input id="roles-drawer" type="checkbox" class="drawer-toggle" data-drawer-target='checkbox' />
+    <div class="drawer-content">
+        <div class="flex justify-between items-baseline">
+            <div class='w-80'>
+                <%= form_with url: admin_roles_path,
+                    method: :get,
+                    data: {
+                        turbo_frame: 'role_search_results',
+                        turbo_action: 'advance',
+                        controller: 'search-form',
+                        action: 'input->search-form#submit'
+                    } do |f|
+                %>
+                    <%= f.search_field :search,
+                        class: 'input input-bordered w-full',
+                        placeholder: 'Role name',
+                        value: params[:search]
+                    %>
+                <% end %>
+            </div>
+            <%= link_to "Add new role", new_admin_role_path,
+                class: "btn btn-primary drawer-button",
+                data: { turbo_frame: "create_role_form", action: "click->drawer#open" }
+            %>
+        </div>
+
+        <div class="mt-8 overflow-x-auto">
+        <%= turbo_frame_tag 'role_search_result' do %>
+            <%= render 'table', roles: @roles %>
+            <div class='mt-4 flex justify-end'>
+                <%== pagy_nav(@pagy) %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+    <div class="drawer-side">
+      <label for="roles-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+      <ul class="menu bg-base-100 text-base-content min-h-full w-96 p-4">
+        <!-- Sidebar content here -->
+        <%= turbo_frame_tag 'create_role_form' %>
+      </ul>
+    </div>
+</div>

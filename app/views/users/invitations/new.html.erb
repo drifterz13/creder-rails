@@ -1,5 +1,8 @@
 <%= turbo_frame_tag 'invite_user_form' do %>
     <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }, data: { action: 'drawer#close' }) do |f| %>
+        <div class="mb-10">
+            <h1 class="text-2xl antialiased font-semibold mt-4">Invite new user</h1>
+        </div>
         <div class="mb-6">
             <%= f.label :email do %>
                 <p class="antialiased font-sans text-sm leading-normal text-inherit mb-2 block font-medium text-gray-900">
