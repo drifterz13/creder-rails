@@ -24,16 +24,18 @@
   </head>
 
   <body class="max-h-full">
-        <div class="flex">
-            <% if user_signed_in? %>
-                <%= render 'layouts/sidebar' %>
-            <% end %>
-            <div class="w-full overflow-y-scroll max-h-screen">
-                <div class="container p-8">
-                    <%= render "layouts/alert" %>
-                    <%= yield %>
-                </div>
+    <div id="alert">
+        <%= render "layouts/alert" %>
+    </div>
+    <div class="flex">
+        <% if user_signed_in? %>
+            <%= render 'layouts/sidebar' %>
+        <% end %>
+        <div class="w-full overflow-y-scroll max-h-screen">
+            <div class="container p-8">
+                <%= yield %>
             </div>
         </div>
+    </div>
   </body>
 </html>

@@ -18,12 +18,13 @@ class Admin::RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
-
     if @role.save
-      redirect_to admin_roles_path, notice: 'Role was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to admin_roles_path, notice: 'Role was successfully created.' }
+        format.turbo_stream { flash.now[:notice] = 'Role was successfully created.' }
+      end
     else
-      render :new
-      flash.now[:alert] = 'Failed to create role.'
+      render :new, alert: 'Failed to create role.'
     end
   end
 
