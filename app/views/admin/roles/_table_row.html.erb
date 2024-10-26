@@ -6,10 +6,25 @@
   <td><%= role.created_at.strftime("%B %d, %Y") %></td>
   <td><%= role.updated_at.strftime("%B %d, %Y") %></td>
   <th>
-      <div class="tooltip" data-tip="View role">
-          <button class="btn btn-ghost btn-xs">
-              <%= lucide_icon 'eye', class: 'w-5 h-5' %>
-          </button>
+      <div class='flex gap-2'>
+          <div class="tooltip" data-tip="View role">
+              <button class="btn btn-ghost btn-xs">
+                  <%= lucide_icon 'eye', class: 'w-5 h-5' %>
+              </button>
+          </div>
+          <% if role.users.exists? %>
+            <%= button_tag class: "btn btn-ghost btn-xs", disabled: true do %>
+                <%= lucide_icon 'trash-2', class: 'w-5 h-5' %>
+            <% end %>
+          <% else %>
+            <div class="tooltip" data-tip="Delete role">
+                <%= form_with(model: role, url: admin_role_path(role), method: :delete, data: { turbo_confirm: "Are you sure?" }) do |f| %>
+                    <%= f.button nil, class: "btn btn-ghost btn-xs", formmethod: :delete do %>
+                        <%= lucide_icon 'trash-2', class: 'w-5 h-5' %>
+                    <% end %>
+                <% end %>
+            </div>
+          <% end %>
       </div>
   </th>
 </tr>

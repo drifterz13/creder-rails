@@ -26,7 +26,7 @@
         </div>
 
         <div class="mt-8 overflow-x-auto">
-        <%= turbo_frame_tag 'role_search_result' do %>
+        <%= turbo_frame_tag 'role_search_results' do %>
             <%= render 'table', roles: @roles %>
             <div class='mt-4 flex justify-end'>
                 <%== pagy_nav(@pagy) %>

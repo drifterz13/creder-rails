@@ -28,6 +28,16 @@ class Admin::RolesController < ApplicationController
     end
   end
 
+  def destroy
+    @role = Role.find(params[:id])
+    @role.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_roles_path, notice: "Role has been deleted successfully" }
+      format.turbo_stream { flash.now[:notice] = "Role has been deleted successfully" }
+    end
+  end
+
   private
 
   def role_params
@@ -37,5 +47,4 @@ class Admin::RolesController < ApplicationController
       role_permissions_attributes: [:id, :permission_id, :_destroy]
     )
   end
-
 end
