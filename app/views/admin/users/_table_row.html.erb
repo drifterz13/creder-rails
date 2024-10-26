@@ -1,0 +1,35 @@
+<tr id="<%= dom_id user %>">
+  <td>
+    <div class="flex items-center gap-3">
+      <div class="avatar placeholder">
+        <div class="bg-neutral text-neutral-content w-10 rounded-full">
+            <span><%= user.full_name.first.upcase %></span>
+        </div>
+      </div>
+      <div>
+        <div class="font-bold"><%= user.full_name %></div>
+        <div class="text-sm opacity-50">United States</div>
+      </div>
+    </div>
+  </td>
+  <td>
+      <span><%= user.email %></span>
+  </td>
+  <td><%= user.role_name %></td>
+  <th>
+      <div class='flex gap-2'>
+          <div class="tooltip" data-tip="View user">
+              <%= link_to admin_user_path(user), class: "btn btn-ghost btn-xs", data: { turbo: false } do %>
+                  <%= lucide_icon 'eye', class: 'w-5 h-5' %>
+              <% end %>
+          </div>
+          <div class="tooltip" data-tip="Delete user">
+            <%= form_with(model: user, url: admin_user_path(user), method: :delete, data: { turbo_confirm: "Are you sure?" }) do |f| %>
+                <%= f.button nil, class: "btn btn-ghost btn-xs", formmethod: :delete do %>
+                    <%= lucide_icon 'trash-2', class: 'w-5 h-5' %>
+                <% end %>
+            <% end %>
+          </div>
+      </div>
+  </th>
+</tr>

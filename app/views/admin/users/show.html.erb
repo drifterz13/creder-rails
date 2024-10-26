@@ -1,0 +1,27 @@
+<div class='flex flex-col mb-8'>
+    <h1 class='text-3xl antialiased font-semibold'>User details</h1>
+
+    <div class="flex flex-col gap-3 mt-5">
+        <div class="avatar placeholder">
+            <div class="bg-neutral text-neutral-content w-24 rounded-full">
+                <span class='text-3xl'><%= @user.full_name.first.upcase %></span>
+            </div>
+        </div>
+        <div>
+            <div class="font-bold"><%= @user.full_name %></div>
+            <div class="text-sm opacity-50"><%= @user.email %></div>
+        </div>
+        <div>
+            <div class="font-bold">Role</div>
+            <div class="text-sm opacity-50"><%= @user.role_name %></div>
+        </div>
+        <div class='space-y-2'>
+            <div class="font-bold">Permissions</div>
+            <div class="flex gap-1 max-w-xs flex-wrap">
+                <% @user.permissions.each do |permission| %>
+                    <div class="badge badge-neutral"><%= permission.to_s.humanize %></div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
