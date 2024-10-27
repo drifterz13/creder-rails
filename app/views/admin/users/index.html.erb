@@ -19,10 +19,12 @@
                     %>
                 <% end %>
             </div>
-            <%= link_to "Add new user", new_user_invitation_path,
-                class: "btn btn-primary drawer-button",
-                data: { turbo_frame: "invite_user_form", action: "click->drawer#open" }
-            %>
+            <% if policy(:user).new? %>
+                <%= link_to "Add new user", new_user_invitation_path,
+                    class: "btn btn-primary drawer-button",
+                    data: { turbo_frame: "invite_user_form", action: "click->drawer#open" }
+                %>
+            <% end %>
         </div>
 
         <div class="mt-8 overflow-x-auto">

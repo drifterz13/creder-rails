@@ -7,13 +7,16 @@
   <td><%= role.updated_at.strftime("%B %d, %Y") %></td>
   <th>
       <div class='flex gap-2'>
-          <div class="tooltip" data-tip="View role">
-              <%= link_to edit_admin_role_path(role),
-                  class: "btn btn-ghost btn-xs",
-                  data: { turbo_frame: "role_form", action: "click->drawer#open" } do %>
-                  <%= lucide_icon 'eye', class: 'w-5 h-5' %>
-              <% end %>
-          </div>
+          <% if policy(:role).edit? %>
+              <div class="tooltip" data-tip="View role">
+                  <%= link_to edit_admin_role_path(role),
+                      class: "btn btn-ghost btn-xs",
+                      data: { turbo_frame: "role_form", action: "click->drawer#open" } do %>
+                      <%= lucide_icon 'eye', class: 'w-5 h-5' %>
+                  <% end %>
+              </div>
+          <% end %>
+        <% if policy(:role).destroy? %>
           <% if role.users.exists? %>
             <%= button_tag class: "btn btn-ghost btn-xs", disabled: true do %>
                 <%= lucide_icon 'trash-2', class: 'w-5 h-5' %>
@@ -27,6 +30,7 @@
                 <% end %>
             </div>
           <% end %>
+        <% end %>
       </div>
   </th>
 </tr>

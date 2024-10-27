@@ -3,14 +3,16 @@ class Admin::RolesController < ApplicationController
 
   def index
     if params[:search].present?
-      @pagy, @roles = pagy(Role.search(params[:search]))
+      @pagy, @roles = pagy(policy_scope(Role).search(params[:search]))
     else
-      @pagy, @roles = pagy(Role.all)
+      @pagy, @roles = pagy(policy_scope(Role))
     end
   end
 
   def new
     @role = Role.new
+    authorize @role, :new?
+
     Permission.all.each do |permission|
       @role.role_permissions.build(permission: permission)
     end
@@ -18,6 +20,8 @@ class Admin::RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
+    authorize @role, :create?
+
     if @role.save
       respond_to do |format|
         format.html { redirect_to admin_roles_path, notice: 'Role was successfully created.' }
@@ -30,6 +34,7 @@ class Admin::RolesController < ApplicationController
 
   def edit
     @role = Role.find(params[:id])
+    authorize @role, :edit?
     current_permission_ids = @role.permissions.map { |permission| permission.id }
 
     Permission.all.each do |permission|
@@ -39,6 +44,7 @@ class Admin::RolesController < ApplicationController
 
   def update
     @role = Role.find(params[:id])
+    authorize @role, :update?
 
     if @role.update(role_params)
       respond_to do |format|
@@ -52,6 +58,7 @@ class Admin::RolesController < ApplicationController
 
   def destroy
     @role = Role.find(params[:id])
+    authorize @role, :destroy?
     @role.destroy
 
     respond_to do |format|

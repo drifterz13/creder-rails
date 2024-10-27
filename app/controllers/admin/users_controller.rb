@@ -15,6 +15,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    authorize @user, :destroy?
     @user.destroy
 
     respond_to do |format|

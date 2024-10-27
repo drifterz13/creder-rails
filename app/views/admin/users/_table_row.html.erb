@@ -23,13 +23,15 @@
                   <%= lucide_icon 'eye', class: 'w-5 h-5' %>
               <% end %>
           </div>
-          <div class="tooltip" data-tip="Delete user">
-            <%= form_with(model: user, url: admin_user_path(user), method: :delete, data: { turbo_confirm: "Are you sure?" }) do |f| %>
-                <%= f.button nil, class: "btn btn-ghost btn-xs", formmethod: :delete do %>
-                    <%= lucide_icon 'trash-2', class: 'w-5 h-5' %>
+          <% if policy(:user).destroy? %>
+              <div class="tooltip" data-tip="Delete user">
+                <%= form_with(model: user, url: admin_user_path(user), method: :delete, data: { turbo_confirm: "Are you sure?" }) do |f| %>
+                    <%= f.button nil, class: "btn btn-ghost btn-xs", formmethod: :delete do %>
+                        <%= lucide_icon 'trash-2', class: 'w-5 h-5' %>
+                    <% end %>
                 <% end %>
-            <% end %>
-          </div>
+              </div>
+          <% end %>
       </div>
   </th>
 </tr>
