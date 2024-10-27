@@ -1,0 +1,18 @@
+<tr id="<%= dom_id course %>">
+  <td>
+    <div class="font-bold"><%= course.name %></div>
+  </td>
+  <td><%= course.description ? truncate(course.description, length: 15, omission: '...') : "-" %></td>
+  <td><%= course.grading_name %></td>
+  <td><%= course.created_at.strftime("%B %d, %Y") %></td>
+  <td><%= course.updated_at.strftime("%B %d, %Y") %></td>
+  <th>
+      <div class='flex gap-2'>
+        <div class="tooltip" data-tip="View course">
+            <%= link_to admin_course_path(course), class: "btn btn-ghost btn-xs", data: { turbo: false } do %>
+                <%= lucide_icon 'eye', class: 'w-5 h-5' %>
+            <% end %>
+        </div>
+      </div>
+  </th>
+</tr>

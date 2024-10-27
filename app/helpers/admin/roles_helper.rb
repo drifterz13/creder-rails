@@ -1,3 +1,3 @@
-module UsersHelper
+module Admin::RolesHelper
   include Pagy::Frontend
 end

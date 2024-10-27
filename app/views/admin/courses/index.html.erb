@@ -1,0 +1,30 @@
+<div class="flex justify-between items-baseline">
+    <div class='w-80'>
+        <%= form_with url: admin_courses_path,
+            method: :get,
+            data: {
+                turbo_frame: 'course_search_results',
+                turbo_action: 'advance',
+                controller: 'search-form',
+                action: 'input->search-form#submit'
+            } do |f|
+        %>
+            <%= f.search_field :search,
+                class: 'input input-bordered w-full',
+                placeholder: 'Course name',
+                value: params[:search]
+            %>
+        <% end %>
+    </div>
+</div>
+
+<div class="mt-8 overflow-x-auto">
+    <%= turbo_frame_tag 'course_search_results' do %>
+        <%= render 'table', courses: @courses %>
+        <% if @courses.length >= 10 %>
+            <div class='mt-4 flex justify-end'>
+                <%== pagy_nav(@pagy) %>
+            </div>
+        <% end %>
+    <% end %>
+</div>

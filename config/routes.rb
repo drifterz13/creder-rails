@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  scope :api do
+    resources :courses, only: [ :create, :update ]
+  end
+
   namespace :admin do
+    resources :courses, only: [ :index, :show ]
     resources :users, only: [ :index, :show, :destroy ]
     resources :roles, only: [ :index, :new, :create, :edit, :update, :destroy ]
   end
@@ -21,6 +26,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
   root "dashboards#index"
 end

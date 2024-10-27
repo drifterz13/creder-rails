@@ -7,6 +7,7 @@ class Permission < ApplicationRecord
 
   enum :permit, [
     :view_user, :create_user, :edit_user, :delete_user,
-    :view_role, :create_role, :edit_role, :delete_role
+    :view_role, :create_role, :edit_role, :delete_role,
+    :view_course
   ]
 end

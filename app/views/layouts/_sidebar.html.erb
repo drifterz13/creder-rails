@@ -17,6 +17,14 @@
                         <span>Dashboard</span>
                     <% end %>
                 </li>
+                <% if policy(:course).index? %>
+                    <li>
+                        <%= link_to admin_courses_path do %>
+                            <%= lucide_icon 'library-big', class: "w-5 h-5" %>
+                            <span>Courses</span>
+                        <% end %>
+                    </li>
+                <% end %>
                 <li>
                     <%= link_to admin_roles_path do %>
                         <%= lucide_icon 'book-user', class: "w-5 h-5" %>

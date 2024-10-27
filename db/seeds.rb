@@ -17,7 +17,8 @@ Role.insert_all!([ "Super Admin", "Admin", "Staff" ].map { |role| { name: role }
 Permission.insert_all!(
   [
     :view_user, :create_user, :edit_user, :delete_user,
-    :view_role, :create_role, :edit_role, :delete_role
+    :view_role, :create_role, :edit_role, :delete_role,
+    :view_course
   ].map { |permission| { name: permission.to_s.humanize, permit: permission } }
 )
 
