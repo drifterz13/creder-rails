@@ -2,7 +2,7 @@
   <div class="form-control">
     <label class="label cursor-pointer">
       <% if f.object.persisted? %>
-        <%= f.check_box :_destroy, { class: "checkbox" }, '0', '1' %>
+        <%= f.check_box :_destroy, { class: "checkbox", checked: true }, '0', '1' %>
       <% else %>
         <%= f.check_box :_destroy, { class: "checkbox", checked: false }, '0', '1' %>
       <% end %>

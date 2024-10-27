@@ -1,0 +1,2 @@
+<%= turbo_stream.replace(@role, partial: 'admin/roles/table_row', locals: { role: @role }) %>
+<%= turbo_stream.prepend(:alert, partial: 'layouts/alert') %>

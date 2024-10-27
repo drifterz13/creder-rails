@@ -21,7 +21,7 @@
             </div>
             <%= link_to "Add new role", new_admin_role_path,
                 class: "btn btn-primary drawer-button",
-                data: { turbo_frame: "create_role_form", action: "click->drawer#open" }
+                data: { turbo_frame: "role_form", action: "click->drawer#open" }
             %>
         </div>
 
@@ -38,7 +38,7 @@
       <label for="roles-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu bg-base-100 text-base-content min-h-full w-96 p-4">
         <!-- Sidebar content here -->
-        <%= turbo_frame_tag 'create_role_form' %>
+        <%= turbo_frame_tag 'role_form' %>
       </ul>
     </div>
 </div>

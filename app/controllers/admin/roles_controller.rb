@@ -28,6 +28,28 @@ class Admin::RolesController < ApplicationController
     end
   end
 
+  def edit
+    @role = Role.find(params[:id])
+    current_permission_ids = @role.permissions.map { |permission| permission.id }
+
+    Permission.all.each do |permission|
+      @role.role_permissions.build(permission: permission) unless current_permission_ids.include?(permission.id)
+    end
+  end
+
+  def update
+    @role = Role.find(params[:id])
+
+    if @role.update(role_params)
+      respond_to do |format|
+        format.html { redirect_to admin_roles_path, notice: 'Role was successfully updated.' }
+        format.turbo_stream { flash.now[:notice] = 'Role was successfully updated.' }
+      end
+    else
+      render :new, alert: 'Failed to updated role.'
+    end
+  end
+
   def destroy
     @role = Role.find(params[:id])
     @role.destroy
