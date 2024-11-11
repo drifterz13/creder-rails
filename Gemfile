@@ -44,7 +44,7 @@ gem "thruster", require: false
 
 gem "devise_invitable", "~> 2.0.0"
 gem "faker"
-gem "pagy", "~> 9.1"
+gem "pagy", "~> 9.2"
 gem "premailer-rails"
 
 group :development, :test do
